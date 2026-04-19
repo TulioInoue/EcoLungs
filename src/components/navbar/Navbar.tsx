@@ -2,7 +2,12 @@ import style from "./Navbar.module.css";
 
 import { cities } from "../../functions/dynamoDB";
 
-export default function Navbar() {
+interface navbarInterface {
+  onThemeChange: () => void;
+  theme: boolean;
+}
+
+export default function Navbar({ onThemeChange, theme }: navbarInterface) {
   return (
     <nav id={style.navbar}>
       <section className={style.navbar__links}>
@@ -29,38 +34,21 @@ export default function Navbar() {
             <i className="fi fi-brands-linkedin"></i>
           </a>
         </div>
-        <div className={style.navbar__content__mode}>
-          <div>
-            <span id={style.navbar__content__mode_circle1}></span>
-            <span id={style.navbar__content__mode_circle2}></span>
-
-            <div>
-              <span
-                className={style.navbar__content__mode_spark}
-                style={{ rotate: "90deg", bottom: "10px", right: "17.5px" }}
-              ></span>
-              <span
-                className={style.navbar__content__mode_spark}
-                style={{ rotate: "60deg" }}
-              ></span>
-              <span
-                className={style.navbar__content__mode_spark}
-                style={{ rotate: "120deg" }}
-              ></span>
-              <span
-                className={style.navbar__content__mode_spark}
-                style={{ rotate: "180deg" }}
-              ></span>
-              <span
-                className={style.navbar__content__mode_spark}
-                style={{ rotate: "240deg" }}
-              ></span>
-              <span
-                className={style.navbar__content__mode_spark}
-                style={{ rotate: "300deg" }}
-              ></span>
-            </div>
-          </div>
+        <div className={style.navbar__content__mode} onClick={onThemeChange}>
+          <span
+            id={
+              theme
+                ? style.navbar__content__mode_sun_active
+                : style.navbar__content__mode_sun_deactive
+            }
+          />
+          <span
+            id={
+              theme
+                ? style.navbar__content__mode_moon_active
+                : style.navbar__content__mode_moon_deactive
+            }
+          />
         </div>
       </section>
     </nav>
