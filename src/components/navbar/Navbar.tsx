@@ -34,7 +34,14 @@ export default function Navbar({ onThemeChange, theme }: navbarInterface) {
             <i className="fi fi-brands-linkedin"></i>
           </a>
         </div>
-        <div className={style.navbar__content__mode} onClick={onThemeChange}>
+        <div
+          className={
+            theme
+              ? style.navbar__content__mode__sun
+              : style.navbar__content__mode__night
+          }
+          onClick={onThemeChange}
+        >
           <span
             id={
               theme

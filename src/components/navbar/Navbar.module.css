@@ -48,6 +48,16 @@
   font-size: 1rem;
 }
 
+.navbar__content__links select {
+  /* background-color: var(--primary-hover-color); */
+  outline: unset;
+  border: unset;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-weight: 700;
+  /* color: var(--background-light-color); */
+}
+
 .navbar__content__brands {
   display: flex;
   width: 100%;
@@ -63,18 +73,31 @@
 
 .navbar__content__brands a i {
   display: flex;
+  transition: transform 0.2s ease-in-out;
 }
 
-.navbar__content__mode {
+.navbar__content__brands a i:hover {
+  transform: translateY(-2px);
+}
+
+.navbar__content__mode__sun,
+.navbar__content__mode__night {
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
-  background-color: var(--primary-hover-color);
   border-radius: 50px;
   position: relative;
   cursor: pointer;
   padding: 0.5rem;
+}
+
+.navbar__content__mode__sun {
+  background-color: var(--primary-hover-color);
+}
+
+.navbar__content__mode__night {
+  background-color: var(--primary-light-color);
 }
 
 #navbar__content__mode_sun_active,
@@ -112,7 +135,7 @@
 }
 
 #navbar__content__mode_moon_deactive {
-  background-color: var(--primary-hover-color);
+  background-color: var(--primary-light-color);
   animation: hideMoon 0.5s ease-in-out;
   opacity: 1;
   left: 20px;
