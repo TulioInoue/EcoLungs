@@ -1,15 +1,28 @@
 :root {
-  --primary-color: #1c3148;
-  --primary-light-color: #26415d;
-  --primary-hover-color: #4978ab;
-  --secondary-color: #d27b31;
-  --secondary-light-color: #ffcd5f;
-  --white-color: #ffffff;
-  --background-light-color: #fefefe;
-  --background-dark-color: #7d7d7d;
-  --success-color: #216b31;
-  --sucess-light-color: #6cd769;
-  --error-color: #b51515;
+  /* For light mode */
+  --lighter-primary-color: #1c3148;
+  --lighter-primary-light-color: #26415d;
+  --lighter-primary-hover-color: #4978ab;
+  --lighter-secondary-color: #d27b31;
+  --lighter-secondary-light-color: #ffcd5f;
+  --lighter-background-color: #ffffff;
+  --lighter-map-background: #d4dadc;
+  --lighter-map-color: #fafaf8;
+  --lighter-text-dark-color: #212529;
+  --lighter-text-light-color: #eeeeee;
+  --lighter-sun-color: #ffcd5f;
+
+  /* For dark mode */
+  --darker-primary-color: #479ba7;
+  --darker-primary-light-color: #60adb9;
+  --darker-primary-hover-color: #65bfcd;
+  --darker-secondary-color: #51c6c0;
+  --darker-secondary-light-color: #61d6d0;
+  --darker-background-color: #212727;
+  --darker-map-background: #2b2d2d;
+  --darker-text-dark-color: #212529;
+  --darker-text-light-color: #eeeeee;
+  --darker-sun-color: #ffcd5f;
 }
 
 * {
@@ -22,7 +35,6 @@
 body {
   height: 100dvh;
   width: 100vw;
-  background: var(--background-light-color);
   font-size: 62.5%;
 }
 

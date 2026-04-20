@@ -1,0 +1,42 @@
+#hero__lighter,
+#hero__darker {
+  width: 100%;
+  font-size: 1rem;
+  line-height: 2.25rem;
+  text-align: justify;
+}
+
+#hero__lighter {
+  background-color: var(--lighter-background-color);
+  color: var(--lighter-text-dark-color);
+}
+
+#hero__darker {
+  background-color: var(--darker-background-color);
+  color: var(--lighter-text-light-color);
+}
+
+.hero__header,
+.hero__content {
+  padding: 2.5rem 5rem;
+}
+
+#hero__lighter .hero__content {
+  background-color: var(--lighter-map-background);
+}
+
+#hero__darker .hero__content {
+  background-color: var(--darker-map-background);
+}
+
+.hero__content {
+  display: grid;
+  grid-template-columns: 3fr 4fr;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero__content > :last-child {
+  width: 100%;
+  min-width: 0;
+}

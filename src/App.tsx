@@ -5,14 +5,14 @@ import Dash from "./components/dash/dash";
 import { useState } from "react";
 
 export default function App() {
-  const [theme, setTheme] = useState<boolean>(false);
+  const [theme, setTheme] = useState<boolean>(true);
   return (
     <>
       <Navbar
         onThemeChange={() => setTheme((current) => (current ? false : true))}
         theme={theme}
       />
-      <Hero />
+      <Hero theme={theme} />
       <Dash />
     </>
   );
