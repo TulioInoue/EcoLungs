@@ -9,11 +9,8 @@ export default function Navbar({ onThemeChange, theme }: navbarInterface) {
   return (
     <nav id={theme ? style.navbar__light : style.navbar__dark}>
       <div className={style.navbar__links}>
-        <a href="">
+        <a href="https://github.com/TulioInoue/EcoLungs">
           <i className="fi fi-brands-github"></i>
-        </a>
-        <a href="">
-          <i className="fi fi-brands-linkedin"></i>
         </a>
       </div>
       <section className={style.navbar__shortcuts}>
@@ -21,6 +18,7 @@ export default function Navbar({ onThemeChange, theme }: navbarInterface) {
         <a href="">Dash</a>
         <a href="">Table</a>
       </section>
+      <div className={style.navbar__search}></div>
       <section className={style.navbar__content}>
         <div
           className={

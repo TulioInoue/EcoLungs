@@ -1,14 +1,14 @@
 #navbar__light,
 #navbar__dark {
   width: 100%;
-  height: clamp(50px, 100%, 70px);
   display: grid;
-  grid-template-columns: min-content 4fr min-content;
-  font-size: clamp(0.5rem, 2vw, 1.25rem);
+  grid-template-columns: min-content 1fr min-content min-content;
+  font-size: clamp(0.75rem, 3vw, 1.25rem);
   gap: clamp(0.5rem, 1vw, 3rem);
   font-weight: 600;
-  padding: clamp(5px, 1vw, 12.5px);
-  /* position: fixed; */
+  padding: clamp(5px, 1vw, 10px);
+  height: clamp(40px, 10vw, 50px);
+  position: fixed;
   z-index: 2;
 }
 
@@ -67,18 +67,42 @@
   text-align: center;
   display: flex;
   align-items: center;
-  padding: 0.5rem clamp(1rem, 5%, 3rem);
+  padding: 5px clamp(0.5rem, 5%, 3rem);
   border-radius: 10px;
   outline: unset;
   transition: background-color 0.125s ease-in-out;
 }
 
+#navbar__light .navbar__search {
+  background-color: var(--lighter-primary-light-color);
+  color: var(--lighter-text-light-color);
+}
+
+#navbar__dark .navbar__search {
+  background-color: var(--darker-primary-light-color);
+  color: var(--darker-text-light-color);
+}
+
+#navbar__light .navbar__search_select option {
+  background-color: var(--lighter-background-color);
+  color: var(--lighter-text-darker-color);
+}
+
+#navbar__dark .navbar__search_select option {
+  background-color: var(--darker-background-color);
+  color: var(--darker-text-light-color);
+}
+
+/* Container para dar o formato de pílula e fundo escuro */
+.navbar__search {
+}
+
 #navbar__light .navbar__shortcuts a:hover {
-  background-color: var(--lighter-secondary-color);
+  background-color: var(--lighter-primary-hover-color);
 }
 
 #navbar__dark .navbar__shortcuts a:hover {
-  background-color: var(--darker-secondary-color);
+  background-color: var(--darker-primary-hover-color);
 }
 
 .navbar__content {
@@ -86,16 +110,14 @@
   grid-template-columns: 1fr;
   gap: 2rem;
   width: 100%;
-  /* height: 100%; */
   justify-content: space-evenly;
   align-items: center;
 }
 
 .navbar__content__mode__sun,
 .navbar__content__mode__night {
-  /* height: 100%; */
   height: 25px;
-  width: 150px;
+  width: 75px;
   display: flex;
   align-items: center;
   border-radius: 50px;
@@ -134,25 +156,25 @@
 #navbar__content__mode_sun_deactive {
   position: absolute;
   border-radius: 50%;
-  height: 1.25rem;
-  width: 1.25rem;
+  height: 1rem;
+  width: 1rem;
 }
 
 #navbar__content__mode_moon_active,
 #navbar__content__mode_moon_deactive {
   position: absolute;
   border-radius: 50%;
-  height: 1.125rem;
-  width: 1.125rem;
+  height: 0.875rem;
+  width: 0.875rem;
 }
 
 #navbar__content__mode_sun_active {
-  right: 10px;
+  right: 5px;
   animation: sunrize 0.5s ease-in-out;
 }
 
 #navbar__content__mode_sun_deactive {
-  left: 10px;
+  left: 5px;
   animation: sunfading 0.5s ease-in-out;
 }
 
@@ -181,12 +203,12 @@
 #navbar__content__mode_moon_deactive {
   animation: hideMoon 0.5s ease-in-out;
   opacity: 1;
-  left: 17.5px;
+  left: 12.5px;
 }
 
 @keyframes sunrize {
   0% {
-    transform: translateX(-100px);
+    transform: translateX(-50px);
   }
   100% {
     transform: translateX(0px);
@@ -195,7 +217,7 @@
 
 @keyframes sunfading {
   0% {
-    transform: translateX(100px);
+    transform: translateX(50px);
   }
   100% {
     transform: translateX(0);
@@ -204,7 +226,7 @@
 
 @keyframes showMoon {
   0% {
-    transform: translateX(-102.5px);
+    transform: translateX(-50.25px);
     opacity: 1;
   }
   75% {
@@ -217,7 +239,7 @@
 
 @keyframes hideMoon {
   0% {
-    transform: translateX(100px);
+    transform: translateX(50px);
     opacity: 0;
   }
   75% {
@@ -225,86 +247,5 @@
   }
   100% {
     transform: translateX(0px);
-  }
-}
-
-@media (max-width: 800px) {
-  .navbar__content__mode__sun,
-  .navbar__content__mode__night {
-    width: 75px;
-  }
-
-  #navbar__content__mode_sun_active,
-  #navbar__content__mode_sun_deactive {
-    height: 1rem;
-    width: 1rem;
-  }
-
-  #navbar__content__mode_moon_active,
-  #navbar__content__mode_moon_deactive {
-    height: 0.875rem;
-    width: 0.875rem;
-  }
-
-  #navbar__content__mode_sun_active {
-    right: 5px;
-  }
-
-  #navbar__content__mode_sun_deactive {
-    left: 5px;
-  }
-
-  #navbar__content__mode_moon_active {
-    opacity: 0;
-    right: 0px;
-  }
-
-  #navbar__content__mode_moon_deactive {
-    opacity: 1;
-    left: 12px;
-  }
-
-  @keyframes sunrize {
-    0% {
-      transform: translateX(-50px);
-    }
-    100% {
-      transform: translateX(0px);
-    }
-  }
-
-  @keyframes sunfading {
-    0% {
-      transform: translateX(50px);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes showMoon {
-    0% {
-      transform: translateX(-50.25px);
-      opacity: 1;
-    }
-    75% {
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(0px);
-    }
-  }
-
-  @keyframes hideMoon {
-    0% {
-      transform: translateX(50px);
-      opacity: 0;
-    }
-    75% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(0px);
-    }
   }
 }
