@@ -1,38 +1,38 @@
 import ReactECharts from "echarts-for-react";
 import * as echarts from "echarts";
-import worldMap from "../../../data/map.json";
+import worldMap from "../../data/map.json";
 
 if (!echarts.getMap("world")) {
   echarts.registerMap("world", worldMap as any);
 }
 
-import { type citiesInterface } from "../../../data/data";
+interface MapDataItem {
+  name: string;
+  value: [number, number, number];
+  symbolSize: string | number;
+  color: string;
+}
 
 interface MapChartInterface {
   titleColor: string;
   titleText: string;
-  pointColor: string;
-  areaColor: string;
-  data: citiesInterface[];
+  roam: boolean;
+  data: MapDataItem[];
 }
 
 export default function MapChart({
   titleColor,
   titleText,
-  pointColor,
-  areaColor,
+  roam,
   data,
 }: MapChartInterface) {
-  const colors = {
-    title: "#9ca3af",
-    points: "#eab308",
-    area: "#1f2937",
-    border: "#374151",
-  };
-
-  const scatterData = data.map((city) => ({
-    name: city.name,
-    value: [city.lon, city.lat, 1],
+  const scatterData = data.map((item) => ({
+    name: item.name,
+    value: item.value,
+    symbolSize: +item.symbolSize,
+    itemStyle: {
+      color: item.color,
+    },
   }));
 
   const option = {
@@ -40,41 +40,39 @@ export default function MapChart({
     title: {
       text: titleText,
       left: "center",
-      top: "-1%",
+      top: "2.5%",
       textStyle: {
         color: titleColor,
         fontSize: 14,
         fontWeight: "bold",
       },
     },
-    toolbox: {
-      show: true,
-      left: "right",
-      iconStyle: { borderColor: "#9ca3af" },
-      feature: {
-        restore: { title: "Reset View" }, // Ícone para voltar ao centro original
-      },
-    },
+    toolbox: roam
+      ? {
+          show: true,
+          left: "right",
+          iconStyle: { borderColor: "#9ca3af" },
+          feature: {
+            restore: { title: "Reset View" },
+          },
+        }
+      : null,
     tooltip: {
       trigger: "item",
-      // Customização do tooltip para os pontos
       backgroundColor: "rgba(50, 50, 50, 0.9)",
-      borderColor: colors.border,
+      borderColor: "#374151",
       textStyle: { color: "#fff" },
       formatter: "{b}",
     },
     geo: {
       map: "world",
-      roam: true,
+      roam: roam,
 
-      // 1. Limites de Zoom: Impede que o usuário suma com o mapa diminuindo demais
-      // ou se perca entrando "dentro" de uma rua aumentando demais.
       scaleLimit: {
         min: 1,
         max: 5,
       },
 
-      // 2. Coordenadas Limite: Define a "caixa" onde o mapa existe.
       boundingCoords: [
         [-180, 85],
         [180, -60],
@@ -85,8 +83,7 @@ export default function MapChart({
       silent: true,
 
       itemStyle: {
-        areaColor: areaColor,
-        borderColor: colors.border,
+        borderColor: "#374151",
         borderWidth: 0.5,
       },
       emphasis: {
@@ -98,15 +95,12 @@ export default function MapChart({
         name: "Cities",
         type: "scatter",
         coordinateSystem: "geo",
-        // 3. Otimização de Performance:
-        // Impede que o scatter tente renderizar pontos fora da área visível
         clip: true,
         data: scatterData,
-        symbolSize: 10,
+        // symbolSize: 10,
         itemStyle: {
-          color: pointColor,
           shadowBlur: 5,
-          shadowColor: "#374151",
+          shadowColor: "rgba(0,0,0,0.3)",
         },
       },
     ],
@@ -125,7 +119,6 @@ export default function MapChart({
         option={option}
         style={{ height: "100%", width: "100%" }}
         opts={{ renderer: "canvas" }}
-        // 4. Prevenção de perda: Esta prop garante que o gráfico se ajuste ao container
         notMerge={true}
       />
     </div>

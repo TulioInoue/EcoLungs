@@ -1,0 +1,38 @@
+#light,
+#dark {
+  display: flex;
+  flex-direction: column;
+  animation: showContent 0.25s ease-in-out;
+}
+
+@keyframes showContent {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+#light div,
+#dark div {
+  display: flex;
+  gap: 1rem;
+  font-size: clamp(1.5rem, 2vw, 1.75rem);
+  font-weight: bold;
+}
+
+#dark div p::first-letter,
+#light div p::first-letter {
+  text-transform: uppercase;
+}
+
+#light div {
+  color: var(--lighter-secondary-color);
+}
+
+#dark div {
+  color: var(--darker-secondary-color);
+}

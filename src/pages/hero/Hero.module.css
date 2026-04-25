@@ -2,11 +2,14 @@
 #hero__dark {
   width: 100%;
   padding: clamp(2.5rem, 10%, 4.375rem);
-  line-height: 400%;
+  line-height: 375%;
   text-align: justify;
   display: flex;
   flex-direction: column;
   gap: 1.875rem;
+  transition:
+    color 0.125s ease-in-out,
+    background-color 0.125s ease-in-out;
 }
 
 #hero__light {
@@ -37,14 +40,18 @@
   text-transform: uppercase;
 }
 
-#hero__light p,
-#hero__dark p {
+.hero__introduction p,
+.hero__cities p,
+.hero__data p,
+.hero__dash p {
   font-size: clamp(1rem, 2vw, 1.25rem);
 }
 
 .hero__introduction,
 .hero__cities,
-.hero__cities__content {
+.hero__cities__content,
+.hero__data,
+.hero__dash {
   display: flex;
   flex-direction: column;
   gap: 0.875rem;
@@ -52,20 +59,40 @@
   height: 100%;
 }
 
-#hero__light .hero__introduction strong {
+#hero__light strong {
   color: var(--lighter-secondary-color);
 }
 
-#hero__dark .hero__introduction strong {
+#hero__dark strong {
   color: var(--darker-secondary-color);
 }
 
 .hero__cities__graph {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .hero__cities__graph_map {
   width: 100%;
+  display: flex;
+  border-radius: 0.5rem;
+  flex-direction: column;
+  gap: 10px;
   height: clamp(300px, 50vw, 600px);
+}
+
+#hero__light .hero__cities__graph_map {
+  background-color: var(--lighterMapBackground);
+}
+
+#hero__dark .hero__cities__graph_map {
+  background-color: var(--darkerMapBackground);
+}
+
+.hero__cities__graph_map_itens {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }

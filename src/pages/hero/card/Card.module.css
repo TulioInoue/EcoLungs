@@ -1,0 +1,50 @@
+.card__selected,
+.card__unselected {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  padding: clamp(0.25rem, 1vw, 1rem) 0rem;
+  cursor: pointer;
+  transition: background-color 0.125s ease-in-out;
+}
+
+#card__selected_icon {
+  font-size: clamp(0.875rem, 2vw, 1.625rem);
+  line-height: 100%;
+}
+
+#card__selected_text {
+  font-size: clamp(0.625rem, 2vw, 0.75rem);
+  line-height: 100%;
+}
+
+#light.card__selected {
+  background-color: var(--lighter-secondary-color);
+  color: var(--lighter-text-light-color);
+}
+
+#light.card__unselected {
+  background-color: var(--lighter-primary-color);
+  color: var(--lighter-text-light-color);
+}
+
+#light.card__selected:hover,
+#light.card__unselected:hover {
+  background-color: var(--lighter-secondary-hover-color);
+}
+
+#dark.card__selected {
+  background-color: var(--darker-secondary-color);
+  color: var(--darker-text-light-color);
+}
+
+#dark.card__unselected {
+  background-color: var(--darker-primary-color);
+  color: var(--darker-text-light-color);
+}
+
+#dark.card__selected:hover,
+#dark.card__unselected:hover {
+  background-color: var(--darker-secondary-hover-color);
+}

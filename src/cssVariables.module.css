@@ -1,0 +1,45 @@
+:root {
+  /* For light mode */
+  --lighter-primary-color: #1c3148;
+  --lighter-primary-light-color: #26415d;
+  --lighter-primary-hover-color: #4978ab;
+  --lighter-secondary-color: #c56715;
+  --lighter-secondary-light-color: #d27321;
+  --lighter-secondary-hover-color: #e48633;
+  --lighter-background-color: #ffffff;
+  --lighter-text-dark-color: #212529;
+  --lighter-text-light-color: #eeeeee;
+  --lighter-sun-color: #ffcd5f;
+
+  /* For dark mode */
+  --darker-primary-color: #479ba7;
+  --darker-primary-light-color: #60adb9;
+  --darker-primary-hover-color: #65bfcd;
+  --darker-secondary-color: #e8b13a;
+  --darker-secondary-light-color: #e8b852;
+  --darker-secondary-hover-color: #dfb65f;
+  --darker-background-color: #212727;
+  --darker-text-dark-color: #212529;
+  --darker-text-light-color: #eeeeee;
+  --darker-sun-color: #ffcd5f;
+
+  --lighterMapBackground: #d4dadc;
+  --darkerMapBackground: #0c191b;
+}
+
+:export {
+  /* Colors for light and dark mode on map */
+  lighterMapBackground: #d4dadc;
+  lighterPrimaryColor: #1c3148;
+  lighterSecondaryColor: #c56715;
+  lighterTextDarkColor: #212529;
+
+  darkerMapBackground: #0c191b;
+  darkerPrimaryColor: #479ba7;
+  darkerSecondaryColor: #e8b852;
+  darkerTextLightColor: #eeeeee;
+
+  /* Sizes for map */
+  pointSelected: 10;
+  pointUnselected: 6;
+}

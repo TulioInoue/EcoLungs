@@ -1,12 +1,13 @@
+import "./index.css";
+import "./cssVariables.module.css";
+
 import { StrictMode, useState } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router";
 
 import Navbar from "./components/navbar/Navbar";
 import Hero from "./pages/hero/Hero";
 import Dash from "./pages/dash/dash";
-
-import { BrowserRouter, Routes, Route, Navigate } from "react-router";
 
 function App() {
   const [theme, setTheme] = useState<boolean>(true);
