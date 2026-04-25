@@ -1,0 +1,71 @@
+#hero__light,
+#hero__dark {
+  width: 100%;
+  padding: clamp(2.5rem, 10%, 4.375rem);
+  line-height: 400%;
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+}
+
+#hero__light {
+  color: var(--lighter-text-dark-color);
+  background-color: var(--lighter-background-color);
+}
+
+#hero__dark {
+  color: var(--lighter-text-light-color);
+  background-color: var(--darker-background-color);
+}
+
+#hero__light h1,
+#hero__dark h1 {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: clamp(2.5rem, 10vw, 3rem);
+  text-align: center;
+}
+
+#hero__light h2,
+#hero__dark h2 {
+  font-size: clamp(2rem, 2vw, 2.25rem);
+}
+
+#hero__light h2::first-letter,
+#hero__dark h2::first-letter {
+  text-transform: uppercase;
+}
+
+#hero__light p,
+#hero__dark p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+.hero__introduction,
+.hero__cities,
+.hero__cities__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  width: 100%;
+  height: 100%;
+}
+
+#hero__light .hero__introduction strong {
+  color: var(--lighter-secondary-color);
+}
+
+#hero__dark .hero__introduction strong {
+  color: var(--darker-secondary-color);
+}
+
+.hero__cities__graph {
+  width: 100%;
+  height: 100%;
+}
+
+.hero__cities__graph_map {
+  width: 100%;
+  height: clamp(300px, 50vw, 600px);
+}

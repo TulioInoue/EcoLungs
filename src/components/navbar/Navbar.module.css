@@ -3,13 +3,11 @@
   width: 100%;
   display: grid;
   grid-template-columns: min-content 1fr min-content min-content;
-  font-size: clamp(0.75rem, 3vw, 1.25rem);
-  gap: clamp(0.5rem, 1vw, 3rem);
+  font-size: clamp(0.75rem, 3vw, 1rem);
+  gap: clamp(1.5rem, 1vw, 3rem);
   font-weight: 600;
-  padding: clamp(5px, 1vw, 10px);
-  height: clamp(40px, 10vw, 50px);
-  position: fixed;
-  z-index: 2;
+  padding: 10px;
+  height: 50px;
 }
 
 #navbar__light {
@@ -27,7 +25,6 @@
   width: 100%;
   align-items: center;
   justify-content: space-evenly;
-  gap: clamp(0.5rem, 2.5vw, 1rem);
 }
 
 #navbar__light a {
@@ -40,7 +37,7 @@
 
 .navbar__links a {
   text-decoration: none;
-  font-size: clamp(1rem, 4vw, 2rem);
+  font-size: 2rem;
   outline: unset;
 }
 
@@ -73,6 +70,14 @@
   transition: background-color 0.125s ease-in-out;
 }
 
+#navbar__light .navbar__shortcuts_selected {
+  background-color: var(--lighter-secondary-color);
+}
+
+#navbar__dark .navbar__shortcuts_selected {
+  background-color: var(--darker-secondary-color);
+}
+
 #navbar__light .navbar__search {
   background-color: var(--lighter-primary-light-color);
   color: var(--lighter-text-light-color);
@@ -93,16 +98,12 @@
   color: var(--darker-text-light-color);
 }
 
-/* Container para dar o formato de pílula e fundo escuro */
-.navbar__search {
-}
-
 #navbar__light .navbar__shortcuts a:hover {
-  background-color: var(--lighter-primary-hover-color);
+  background-color: var(--lighter-secondary-hover-color);
 }
 
 #navbar__dark .navbar__shortcuts a:hover {
-  background-color: var(--darker-primary-hover-color);
+  background-color: var(--darker-secondary-hover-color);
 }
 
 .navbar__content {
