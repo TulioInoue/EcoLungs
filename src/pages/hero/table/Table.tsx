@@ -1,6 +1,4 @@
-import style from "./Table.module.css"; // Opcional, use suas classes CSS aqui
-
-import React from "react";
+import style from "./Table.module.css";
 
 import { pollutants } from "../../../data/data";
 
@@ -30,7 +28,6 @@ export default function Table({ theme }: TableInterface) {
               {index === 0 && (
                 <td
                   rowSpan={pollutant.levels.length}
-                  //   className={style.table__body__dark}
                 >
                   <strong>{pollutant.formula}</strong>
                   <br />

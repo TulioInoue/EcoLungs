@@ -1,6 +1,6 @@
 import style from "./Navbar.module.css";
 
-import { Link, Outlet } from "react-router";
+import { Link, Outlet, useLocation } from "react-router";
 
 import { useState } from "react";
 interface navbarInterface {
@@ -9,7 +9,9 @@ interface navbarInterface {
 }
 
 export default function Navbar({ onThemeChange, theme }: navbarInterface) {
-  const [linkSelected, setLinkSelected] = useState<string>("about");
+  const [linkSelected, setLinkSelected] = useState<string>(
+    useLocation().pathname,
+  );
 
   return (
     <>
@@ -22,23 +24,23 @@ export default function Navbar({ onThemeChange, theme }: navbarInterface) {
         <section className={style.navbar__shortcuts}>
           <Link
             className={
-              linkSelected === "about"
+              linkSelected === "/about"
                 ? style.navbar__shortcuts_selected
                 : style.navbar__shortcuts_unselected
             }
             to="/about"
-            onClick={() => setLinkSelected("about")}
+            onClick={() => setLinkSelected("/about")}
           >
             About
           </Link>
           <Link
             className={
-              linkSelected === "dash"
+              linkSelected === "/dash"
                 ? style.navbar__shortcuts_selected
                 : style.navbar__shortcuts_unselected
             }
             to="/dash"
-            onClick={() => setLinkSelected("dash")}
+            onClick={() => setLinkSelected("/dash")}
           >
             Dash
           </Link>

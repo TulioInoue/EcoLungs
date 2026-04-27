@@ -1,3 +1,7 @@
+export const monthNames = [
+  "january", "february", "march", "april", "may", "june", "july", "august", "september", "octuber", "november", "december"
+]
+
 interface citiesSummary {
   type: string;
   icon: string;
