@@ -1,7 +1,7 @@
 #hero__light,
 #hero__dark {
   width: 100%;
-  padding: clamp(1.875rem, 10%, 4.375rem);
+  padding: clamp(1.875rem, 10%, 4.375rem) clamp(1.875rem, 10%, 10rem);
   line-height: 375%;
   text-align: justify;
   display: flex;

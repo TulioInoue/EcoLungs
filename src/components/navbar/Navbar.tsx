@@ -2,19 +2,27 @@ import style from "./Navbar.module.css";
 
 import { Link, Outlet, useLocation } from "react-router";
 
+import Loading from "../loading/Loading";
+
 import { useState } from "react";
 interface navbarInterface {
   onThemeChange: () => void;
   theme: boolean;
+  loading: boolean;
 }
 
-export default function Navbar({ onThemeChange, theme }: navbarInterface) {
+export default function Navbar({
+  onThemeChange,
+  theme,
+  loading,
+}: navbarInterface) {
   const [linkSelected, setLinkSelected] = useState<string>(
     useLocation().pathname,
   );
 
   return (
     <>
+      {loading && <Loading theme={theme} />}
       <nav id={theme ? style.navbar__light : style.navbar__dark}>
         <div className={style.navbar__links}>
           <a href="https://github.com/TulioInoue/EcoLungs">

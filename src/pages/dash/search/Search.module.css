@@ -71,6 +71,17 @@
   width: 10rem;
 }
 
+.search__date__month i {
+  cursor: pointer;
+}
+
+.search__light .search__date i:hover {
+  color: var(--lighter-secondary-color);
+}
+.search__dark .search__date i:hover {
+  color: var(--darker-secondary-color);
+}
+
 @media (min-width: 700px) {
   .search__light,
   .search__dark {
