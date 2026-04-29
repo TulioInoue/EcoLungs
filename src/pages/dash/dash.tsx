@@ -6,6 +6,7 @@ import Search from "./search/Search";
 import Intro from "./intro/Intro";
 import Forecast from "./forecast/Forecast";
 import Weather from "./weather/Weather";
+import Gases from "./gases/Gases";
 
 export default function Dash({
   theme,
@@ -33,10 +34,14 @@ export default function Dash({
         <section className={style.dash__content}>
           <Intro theme={theme} data={data} city={city} />
           <Forecast theme={theme} data={data} />
-          <Weather theme={theme} data={data}/>
+          <Weather theme={theme} data={data} />
+          <Gases theme={theme} data={data} />
         </section>
       ) : (
-        <p>No data fetched</p>
+        <div className={style.dash__noContent}>
+          <img src={"/icons/error.svg"} alt="error" />
+          <p>No data collected for this period</p>
+        </div>
       )}
     </article>
   );

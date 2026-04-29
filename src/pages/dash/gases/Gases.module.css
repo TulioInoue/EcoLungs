@@ -1,0 +1,138 @@
+.gases__buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1px;
+}
+
+.gases__buttons_hour {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.gases__buttons_hour p {
+  font-size: clamp(0.75rem, 2vw, 1rem);
+}
+
+.gases__buttons__units {
+  display: flex;
+  gap: 2px;
+}
+
+.gases__buttons span {
+  padding: 0rem 1rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  line-height: 100%;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.gases__light .gases__buttons span {
+  background-color: var(--lighter-primary-color);
+  color: var(--lighter-text-light-color);
+}
+
+.gases__dark .gases__buttons span {
+  background-color: var(--darker-primary-color);
+  color: var(--darker-text-light-color);
+}
+
+.gases__light .gases__buttons span:hover {
+  background-color: var(--lighter-primary-hover-color);
+}
+
+.gases__dark .gases__buttons span:hover {
+  background-color: var(--darker-primary-hover-color);
+}
+
+.gases__light span.gases__buttons_selected {
+  background-color: var(--lighter-primary-light-color);
+}
+
+.gases__dark span.gases__buttons_selected {
+  background-color: var(--darker-primary-light-color);
+}
+
+.gases__graph {
+  height: clamp(300px, 50vw, 500px);
+}
+
+.gases__hours {
+    width: 100%;
+    overflow-y: auto;
+}
+
+#modal__light.gases__hours {
+  background-color: var(--lighterMapBackground);
+  color: var(--lighter-text-dark-color);
+}
+
+#modal__dark.gases__hours {
+  background-color: var(--darkerMapBackground);
+  color: var(--darker-text-light-color);
+}
+
+.gases__hours p {
+  font-size: clamp(1.25rem, 2vw, 2rem);
+  padding: 1rem;
+}
+
+#modal__light span,
+#modal__light p {
+  text-align: center;
+  font-weight: bold;
+  background-color: var(--lighter-primary-light-color);
+  color: var(--lighter-text-light-color);
+}
+
+#modal__dark span,
+#modal__dark p {
+  text-align: center;
+  font-weight: bold;
+  background-color: var(--darker-primary-light-color);
+  color: var(--darker-text-light-color);
+}
+
+.gases__hours div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+}
+
+.gases__hours span {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+#modal__light.gases__hours span:hover {
+  background-color: var(--lighter-primary-hover-color);
+}
+
+#modal__dark.gases__hours span:hover {
+  background-color: var(--darker-primary-hover-color);
+}
+
+#modal__light .gases__hours_selected {
+  background-color: var(--lighter-secondary-color);
+}
+
+#modal__dark .gases__hours_selected {
+  background-color: var(--darker-secondary-color);
+}
+
+.gases__light span.gases__buttons__units_selected {
+    background-color: var(--lighter-primary-light-color);
+}
+
+.gases__dark span.gases__buttons__units_selected {
+    background-color: var(--darker-primary-light-color);
+}

@@ -32,7 +32,7 @@ export default function BarLineChart({
   const option = {
     title: {
       text: title,
-      left: "center", // Alinhamento horizontal
+      left: "center",
       textStyle: {
         color: textColor,
         fontSize: 14,
@@ -40,13 +40,13 @@ export default function BarLineChart({
     },
     tooltip: {
       trigger: "axis",
-      backgroundColor: tooltipBackground, // Cor de fundo (escuro com transparência)
+      backgroundColor: tooltipBackground,
       textStyle: {
-        color: "#fff", // Cor do texto dentro do tooltip
+        color: "#fff",
       },
       axisPointer: {
         type: "cross",
-        label: { backgroundColor: "#6a7985" }, // Cor da etiqueta que segue o mouse nos eixos
+        label: { backgroundColor: "#6a7985" },
       },
     },
     grid: {
@@ -67,13 +67,13 @@ export default function BarLineChart({
       {
         type: "value",
         name: `${barTooltipName} ${barTooltipUnit ? `(${barTooltipUnit})` : ""}`,
-        axisLabel: { formatter: `{value} ${barTooltipUnit}`, color: textColor  },
-        nameTextStyle: { color: textColor }, // Cor do nome do eixo
+        axisLabel: { color: textColor  },
+        nameTextStyle: { color: textColor },
       },
       {
         type: "value",
         name: `${lineTooltipName} ${lineTooltipUnit ? `(${lineTooltipUnit})` : ""}`,
-        axisLabel: { formatter: `{value} ${lineTooltipUnit}`, color: textColor },
+        axisLabel: { color: textColor },
         nameTextStyle: { color: textColor }
       },
     ],
@@ -92,8 +92,7 @@ export default function BarLineChart({
         type: "line",
         yAxisIndex: 1,
         data: lineData,
-        itemStyle: { color: lineColor },
-        lineStyle: { width: 3 },
+        itemStyle: { color: lineColor, width: 3 },
         tooltip: {
           valueFormatter: (value: any) => value + ` ${lineTooltipUnit}`,
         },

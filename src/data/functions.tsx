@@ -76,7 +76,7 @@ export function countGroupByData(
   }));
 }
 
-export function sumByLastUpdated(
+export function sumByLastUpdatedBar(
   data: weatherDataInterface[],
   axisX: keyof weatherDataInterface,
   keyBar: keyof weatherDataInterface,
@@ -94,5 +94,24 @@ export function sumByLastUpdated(
       return acc;
     },
     {} as Record<string, { barSum: number; lineSum: number; count: number }>,
+  );
+}
+
+export function sumByLastUpdatedLine(
+  data: weatherDataInterface[],
+  axisX: keyof weatherDataInterface,
+  keyLine: keyof weatherDataInterface,
+): Record<string, { lineSum: number; count: number }> {
+  return data.reduce(
+    (acc, curr) => {
+      const date = (curr[axisX] as string).split(" ")[0];
+      if (!acc[date]) {
+        acc[date] = { lineSum: 0, count: 0 };
+      }
+      acc[date].lineSum += +curr[keyLine];
+      acc[date].count += 1;
+      return acc;
+    },
+    {} as Record<string, { lineSum: number; count: number }>,
   );
 }

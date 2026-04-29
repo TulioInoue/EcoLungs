@@ -3,9 +3,9 @@ import style from "./Forecast.module.css";
 import { countGroupByData } from "../../../data/functions";
 import { type weatherDataInterface } from "../../../data/functions";
 
-import cloudy from "/public/icons/cloudy.svg";
-import raining from "/public/icons/rain.svg";
-import sunny from "/public/icons/sunny.svg";
+import cloudy from "/icons/cloudy.svg";
+import raining from "/icons/rain.svg";
+import sunny from "/icons/sunny.svg";
 
 interface forecastInterface {
   theme: boolean;
