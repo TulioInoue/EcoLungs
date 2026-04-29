@@ -1,0 +1,54 @@
+.weather__light, .weather__dark {
+    height: clamp(300px, 50vw, 500px);
+}
+
+.weather__buttons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 1rem;
+}
+
+.weather__buttons span {
+    padding: 0rem 1rem;
+    cursor: pointer;
+    border-radius: .5rem;
+    font-weight: 700;
+    line-height: 100%;
+    padding: .5rem 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.weather__buttons img {
+    height: 20px;
+}
+
+.weather__light .weather__buttons span {
+    background-color: var(--lighter-primary-color);
+    color: var(--lighter-text-light-color);
+}
+
+.weather__dark .weather__buttons span {
+    background-color: var(--darker-primary-color);
+    color: var(--darker-text-light-color);
+}
+
+.weather__light .weather__buttons span:hover {
+    background-color: var(--lighter-primary-hover-color);
+}
+
+.weather__dark .weather__buttons span:hover {
+    background-color: var(--darker-primary-hover-color);
+}
+
+.weather__light span.weather__buttons_selected {
+    background-color: var(--lighter-primary-light-color);
+}
+
+.weather__dark span.weather__buttons_selected {
+    background-color: var(--darker-primary-light-color);
+}

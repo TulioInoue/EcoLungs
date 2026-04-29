@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router";
 
 import Navbar from "./components/navbar/Navbar";
 import Hero from "./pages/hero/Hero";
-import Dash from "./pages/dash/dash";
+import Dash from "./pages/dash/Dash";
 
 import {
   handleFetchWeatherData,
@@ -33,7 +33,6 @@ function App() {
       const newData = await handleFetchWeatherData(formattedDate, city);
 
       if (!ignore && newData) {
-        console.log("Dados recebidos:", newData);
         setData(newData);
       }
       setLoading(false);
@@ -88,6 +87,7 @@ function App() {
                 handleDateFunction={handleDate}
                 city={city}
                 handleCityFunction={setCity}
+                data={data}
               />
             }
           />

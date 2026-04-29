@@ -31,7 +31,7 @@ export const summaries: citiesSummary[] = [
     type: "satellite",
     icon: "fi fi-ss-satellite",
     text:
-      "As a primary global megacity and industrial hub, these locations are defined by intense urban density and massive transit networks. Socio-environmentally, it faces high concentrations of vehicular emissions and factory output, creating a complex atmospheric profile. Monitoring this city is crucial to understanding the intersection of rapid economic growth and public health, as the sheer volume of daily activities results in a persistent and heavy burden of various airborne pollutants.",
+      "Functioning as a strategic border city or satellite region, these locations offer unique insights into the transboundary movement of atmospheric pollutants. The socio-environmental focus here is on how industrial activities in neighboring territories influence local air quality via prevailing winds. By tracking these dynamics, the project can model the geographical spread of harmful gases and evaluate how regional transport policies affect the health of populations living far from sources.",
   },
   {
     type: "clean",
@@ -218,3 +218,4 @@ export const cities: citiesInterface[] = [
   { color: "", isSelected: false, icon: "fi fi-ss-tree-sapling", type: "clean", name: "Berne", lat: 46.948, lon: 7.4474 },
   { color: "", isSelected: false, icon: "fi fi-ss-tree-sapling", type: "clean", name: "Auckland", lat: -36.8485, lon: 174.7633 },
 ];
+

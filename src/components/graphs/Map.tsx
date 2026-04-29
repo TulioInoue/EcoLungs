@@ -17,6 +17,8 @@ interface MapChartInterface {
   titleColor: string;
   titleText: string;
   roam: boolean;
+  focus?: [number, number];
+  zoomIn?: number;
   data: MapDataItem[];
 }
 
@@ -25,6 +27,8 @@ export default function MapChart({
   titleText,
   roam,
   data,
+  focus,
+  zoomIn,
 }: MapChartInterface) {
   const scatterData = data.map((item) => ({
     name: item.name,
@@ -70,7 +74,7 @@ export default function MapChart({
 
       scaleLimit: {
         min: 1,
-        max: 5,
+        max: 10,
       },
 
       boundingCoords: [
@@ -78,8 +82,9 @@ export default function MapChart({
         [180, -60],
       ],
 
-      center: [0, 20],
-      zoom: 1.1,
+      // Set optional parameters
+      center: focus ? focus : [0, 20],
+      zoom: zoomIn ? zoomIn : 1.1,
       silent: true,
 
       itemStyle: {

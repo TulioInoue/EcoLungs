@@ -12,17 +12,16 @@
   --lighter-sun-color: #ffcd5f;
 
   /* For dark mode */
-  --darker-primary-color: #479ba7;
-  --darker-primary-light-color: #60adb9;
-  --darker-primary-hover-color: #65bfcd;
+  --darker-primary-color: #a76247;
+  --darker-primary-light-color: #b86f52;
+  --darker-primary-hover-color: #c97e60;
   --darker-secondary-color: #e8b13a;
   --darker-secondary-light-color: #e8b852;
   --darker-secondary-hover-color: #dfb65f;
   --darker-background-color: #212727;
   --darker-text-dark-color: #212529;
-  --darker-text-light-color: #eeeeee;
+  --darker-text-light-color: #eae8e7;
   --darker-sun-color: #ffcd5f;
-
   --lighterMapBackground: #d4dadc;
   --darkerMapBackground: #0c191b;
 }
@@ -35,7 +34,7 @@
   lighterTextDarkColor: #212529;
 
   darkerMapBackground: #0c191b;
-  darkerPrimaryColor: #479ba7;
+  darkerPrimaryColor: #a76247;
   darkerSecondaryColor: #e8b852;
   darkerTextLightColor: #eeeeee;
 

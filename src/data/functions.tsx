@@ -55,3 +55,44 @@ export const handleFetchWeatherData = async (
   }
 };
 
+export function countGroupByData(
+  data: weatherDataInterface[],
+  key: "condition" | "us_epa_index",
+  transformKeyFunction?: (key: string) => string,
+) {
+  const counts: Record<string, number> = {};
+
+  data.forEach((item) => {
+    const condition = transformKeyFunction
+      ? transformKeyFunction(item[key].toString().toLowerCase().trim()) ||
+        "Unknown"
+      : item[key].toString().toLowerCase().trim() || "Unknown";
+    counts[condition] = (counts[condition] || 0) + 1;
+  });
+
+  return Object.entries(counts).map(([name, value]) => ({
+    name,
+    value,
+  }));
+}
+
+export function sumByLastUpdated(
+  data: weatherDataInterface[],
+  axisX: keyof weatherDataInterface,
+  keyBar: keyof weatherDataInterface,
+  keyLine: keyof weatherDataInterface,
+): Record<string, { barSum: number; lineSum: number; count: number }> {
+  return data.reduce(
+    (acc, curr) => {
+      const date = (curr[axisX] as string).split(" ")[0];
+      if (!acc[date]) {
+        acc[date] = { barSum: 0, lineSum: 0, count: 0 };
+      }
+      acc[date].barSum += +curr[keyBar];
+      acc[date].lineSum += +curr[keyLine];
+      acc[date].count += 1;
+      return acc;
+    },
+    {} as Record<string, { barSum: number; lineSum: number; count: number }>,
+  );
+}

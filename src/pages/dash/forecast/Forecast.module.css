@@ -1,0 +1,63 @@
+.forecast__light,
+.forecast__dark {
+  display: flex;
+  flex-direction: column;
+}
+
+.forecast__light .forecast__card {
+  background-color: var(--lighter-primary-color);
+  color: var(--lighter-text-light-color);
+}
+
+.forecast__dark .forecast__card {
+  background-color: var(--darker-primary-color);
+  color: var(--darker-text-light-color);
+}
+
+.forecast__title {
+    font-weight: 700;
+}
+
+.forecast__title::first-letter {
+  text-transform: uppercase;
+}
+
+.forecast__card {
+  display: flex;
+  justify-content: space-evenly;
+  padding: clamp(.5rem, 2vw, 1rem) clamp(0.2rem, 2vw, 1rem);
+  border-radius: 1rem;
+}
+
+.forecast__card__item {
+  display: flex;
+  gap: clamp(0px, 2vw, 5rem);
+}
+
+.forecast__card__item img {
+  width: clamp(20px, 5vw, 40px);
+}
+
+.forecast__card__item b {
+  font-size: clamp(.75rem, 2vw, 1.75rem);
+}
+
+.forecast__light .forecast__card__item b {
+  color: var(--lighter-secondary-color);
+}
+.forecast__dark .forecast__card__item b {
+  color: var(--darker-secondary-color);
+}
+
+.forecast__card__item div {
+  line-height: 200%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0px;
+}
+
+.forecast__card__item p {
+  font-size: clamp(0.5rem, 2vw, 0.75rem);
+  font-weight: 700;
+}

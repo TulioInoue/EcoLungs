@@ -1,9 +1,12 @@
 import style from "./Search.module.css";
 
+import { type weatherDataInterface } from "../../../data/functions";
+
 export interface searchInterface {
   theme: boolean;
   date: { year: number; month: number };
   city: string;
+  data?: weatherDataInterface[],
   handleDateFunction: (period: "year" | "month", value: number) => void;
   handleCityFunction: (city: string) => void;
 }
@@ -18,6 +21,7 @@ export default function Search({
   theme,
   date,
   city,
+  data,
   handleDateFunction,
   handleCityFunction,
 }: searchInterface) {
@@ -37,7 +41,7 @@ export default function Search({
           >
             <div className={style.search__modal_header}>
               <h3>Choose a city</h3>
-              <i className="fi fi-ss-circle-xmark"></i>
+              <i onClick={() => setModal(false  )} className="fi fi-ss-circle-xmark"></i>
             </div>
             <div className={style.search__modal_city}>
               {cities
