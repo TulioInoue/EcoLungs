@@ -13,12 +13,12 @@ interface forecastInterface {
 }
 
 export default function Forecast({ theme, data }: forecastInterface) {
-  function handleTransformForecast(key: string): string {
-    if (["clear", "sun"].some((word) => key.toLowerCase().includes(word)))
+  function handleTransformForecast(key: string|number): string {
+    if (["clear", "sun"].some((word) => key.toString().toLowerCase().includes(word)))
       return "sunny";
     if (
       ["rain", "snow", "light", "storm", "shower", "drizzle", "thund"].some(
-        (word) => key.toLowerCase().includes(word),
+        (word) => key.toString().toLowerCase().includes(word),
       )
     )
       return "raining";

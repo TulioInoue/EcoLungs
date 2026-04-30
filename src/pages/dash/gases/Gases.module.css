@@ -1,3 +1,10 @@
+.gases__light,
+.gases__dark {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .gases__buttons {
   width: 100%;
   display: flex;
@@ -12,11 +19,18 @@
   align-items: center;
 }
 
-.gases__buttons_hour p {
+.gases__buttons_hour p,
+.gases__buttons__units p {
   font-size: clamp(0.75rem, 2vw, 1rem);
 }
 
 .gases__buttons__units {
+  display: flex;
+  line-height: normal;
+  gap: 2px;
+}
+
+.gases__buttons__units div {
   display: flex;
   gap: 2px;
 }
@@ -27,7 +41,7 @@
   border-radius: 0.5rem;
   font-weight: 700;
   line-height: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem clamp(0.5rem, 2vw, 1rem);
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -45,28 +59,28 @@
 }
 
 .gases__light .gases__buttons span:hover {
-  background-color: var(--lighter-primary-hover-color);
+  background-color: var(--lighter-secondary-hover-color);
 }
 
 .gases__dark .gases__buttons span:hover {
-  background-color: var(--darker-primary-hover-color);
+  background-color: var(--darker-secondary-hover-color);
 }
 
 .gases__light span.gases__buttons_selected {
-  background-color: var(--lighter-primary-light-color);
+  background-color: var(--lighter-secondary-light-color);
 }
 
 .gases__dark span.gases__buttons_selected {
-  background-color: var(--darker-primary-light-color);
+  background-color: var(--darker-secondary-light-color);
 }
 
 .gases__graph {
-  height: clamp(300px, 50vw, 500px);
+  height: clamp(200px, 50vw, 300px);
 }
 
 .gases__hours {
-    width: 100%;
-    overflow-y: auto;
+  width: 100%;
+  overflow-y: auto;
 }
 
 #modal__light.gases__hours {
@@ -130,9 +144,156 @@
 }
 
 .gases__light span.gases__buttons__units_selected {
-    background-color: var(--lighter-primary-light-color);
+  background-color: var(--lighter-secondary-light-color);
 }
 
 .gases__dark span.gases__buttons__units_selected {
-    background-color: var(--darker-primary-light-color);
+  background-color: var(--darker-secondary-light-color);
 }
+
+.gases__resume {
+  width: 100%;
+  display: grid;
+  gap: 1rem;
+  padding: clamp(0.5rem, 2vw, 1rem);
+  min-height: 400px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.gases__light .gases__resume {
+  background-color: var(--lighterMapBackground);
+  box-shadow: 0px 0px 10px lightgray;
+}
+
+.gases__dark .gases__resume {
+  background-color: var(--darkerMapBackground);
+  box-shadow: 0px 0px 10px black;
+}
+
+.gases__resume__graph {
+  min-height: 200px;
+}
+
+.gases__resume_description {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.gases__resume_description div {
+  line-height: 200%;
+  animation: showDescription 0.25s ease-in-out;
+}
+
+@keyframes showDescription {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.gases__resume_description p {
+  font-weight: 700;
+}
+
+.gases__resume_description ul {
+  font-size: 1rem;
+  list-style: none;
+  padding: 0.5rem 1rem;
+}
+
+.gases__content {
+  display: grid;
+  gap: 1rem;
+}
+
+.gases__cards {
+  display: grid;
+  align-items: center;
+  padding: clamp(1rem, 2vw, 3rem);
+  gap: 1rem;
+  grid-column: 2;
+}
+
+.gases__cards div {
+  height: 100%;
+  width: 100%;
+  color: var(--lighter-text-light-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  line-height: normal;
+  gap: 5px;
+  padding: .5rem;
+}
+
+.gases__cards div p:first-child {
+  font-weight: 700;
+  font-size: clamp(0.75rem, 2vw, 1rem);
+}
+
+.gases__cards div p:last-child {
+  font-weight: 500;
+  font-size: clamp(0.5rem, 2vw, 0.75rem);
+}
+
+.gases__light .gases__cards div {
+  background-color: var(--lighter-primary-color);
+}
+
+.gases__dark .gases__cards div {
+  background-color: var(--darker-primary-color);
+}
+
+@media (min-width: 700px) {
+  .gases__resume {
+    grid-template-columns: 1fr 2fr;
+  }
+  .gases__buttons__units {
+    flex-direction: column;
+  }
+
+  .gases__cards {
+    grid-template-columns: 1fr 1fr;
+    
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .gases__buttons__units,
+  .gases__buttons_hour {
+    flex-direction: column;
+    line-height: normal;
+  }
+
+  .gases__buttons_hour span {
+    width: 100%;
+  }
+
+  .gases__cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-row: 0;
+  }
+}
+
+@media (min-width: 900px) {
+  .gases__content {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .gases__content {
+    grid-template-columns: 1fr;
+  }
+}
+
+

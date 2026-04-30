@@ -57,8 +57,8 @@ export const handleFetchWeatherData = async (
 
 export function countGroupByData(
   data: weatherDataInterface[],
-  key: "condition" | "us_epa_index",
-  transformKeyFunction?: (key: string) => string,
+  key: keyof weatherDataInterface,
+  transformKeyFunction?: (key: string|number) => string,
 ) {
   const counts: Record<string, number> = {};
 

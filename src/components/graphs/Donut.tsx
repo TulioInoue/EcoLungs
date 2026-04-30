@@ -3,9 +3,12 @@ import ReactECharts from "echarts-for-react";
 interface donutChartInterface {
   data: object;
   title: string;
+  titleColor: string;
+  tooltipBackground: string;
+  color: string[]
 }
 
-export default function DonutChart({ data, title }: donutChartInterface) {
+export default function DonutChart({ data, title, titleColor, tooltipBackground, color }: donutChartInterface) {
 
   const option = {
     backgroundColor: "transparent",
@@ -14,22 +17,22 @@ export default function DonutChart({ data, title }: donutChartInterface) {
       left: "center",
       top: "0%",
       textStyle: {
-        color: "#9ca3af",
+        color: titleColor,
         fontSize: 14,
         fontWeight: "normal",
       },
     },
     tooltip: {
       trigger: "item",
-      backgroundColor: "rgba(31, 41, 55, 0.9)",
-      borderColor: "#374151",
+      backgroundColor: tooltipBackground,
+      borderColor: "transparent",
       textStyle: { color: "#fff" },
       formatter: "{b}: <b>{c}</b> ({d}%)",
     },
     legend: {
       bottom: "0%",
       left: "center",
-      textStyle: { color: "#9ca3af" },
+      textStyle: { color: titleColor },
       itemWidth: 10,
       itemHeight: 10,
     },
@@ -64,6 +67,7 @@ export default function DonutChart({ data, title }: donutChartInterface) {
           show: false,
         },
         data: data,
+        color: color
       },
     ],
   };

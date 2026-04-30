@@ -4,13 +4,16 @@ import colors from "../../../cssVariables.module.css";
 import {
   type weatherDataInterface,
   sumByLastUpdatedLine,
+  countGroupByData,
 } from "../../../data/functions";
+
+import { pollutants } from "../../../data/data";
 
 import { useState } from "react";
 
 import LineChart from "../../../components/graphs/Line";
+import DonutChart from "../../../components/graphs/Donut";
 import Modal from "../../../components/modal/Modal";
-
 interface gasesInterface {
   theme: boolean;
   data: weatherDataInterface[];
@@ -20,6 +23,58 @@ export default function Gases({ theme, data }: gasesInterface) {
   const [gases, setGases] = useState<"co" | "no2" | "o3" | "so2">("co");
   const [modal, setModal] = useState<boolean>();
   const [hour, setHour] = useState<string>();
+
+  function setNameRanges(
+    number: number | string,
+    levels: {
+      min: number;
+      max: number | null;
+      healthStatus: "Good" | "Moderate" | "Unhealthy";
+      symptoms: string;
+      diseases: string;
+    }[],
+  ): "Good" | "Moderate" | "Unhealthy" {
+    for (let index = 0; index < levels.length; index++) {
+      const level = levels[index];
+      if (+number >= level.min) return level.healthStatus;
+    }
+    return "Unhealthy";
+  }
+
+  const healthIcons = {
+    Good: "fi fi-ss-signal-alt-2",
+    Moderate: "fi fi-ss-signal-alt-1",
+    Unhealthy: "fi fi-ss-signal-alt",
+  };
+  const donutColors = {
+    Good: "#238d4b",
+    Moderate: "#bca600",
+    Unhealthy: "#c94f4f",
+  };
+
+  const groupValues = countGroupByData(
+    data.filter((e) =>
+      hour === undefined ? e : e.last_updated.split(" ")[1] === hour.toString(),
+    ),
+    gases,
+    (number: string | number) =>
+      setNameRanges(
+        number,
+        pollutants
+          .find((pollutant) => pollutant.id === gases)!
+          .levels.sort((a, b) => b.min - a.min),
+      ),
+  ).map((group) => {
+    const newGroup: {
+      name: string;
+      value: number;
+      color: string;
+    } = {
+      ...group,
+      color: donutColors[group.name as keyof typeof donutColors],
+    };
+    return newGroup;
+  });
 
   const hours = Array.from({ length: 24 }, (_, i) =>
     i.toString().padStart(2, "0").concat(":00"),
@@ -80,46 +135,164 @@ export default function Gases({ theme, data }: gasesInterface) {
           <span onClick={() => setModal(true)}>{hour ? hour : "All"}</span>
         </div>
         <div className={style.gases__buttons__units}>
-          <span
-            className={
-              gases === "co"
-                ? style.gases__buttons__units_selected
-                : style.gases__buttons__units_unselected
-            }
-            onClick={() => setGases("co")}
-          >
-            co
-          </span>
-          <span
-            className={
-              gases === "no2"
-                ? style.gases__buttons__units_selected
-                : style.gases__buttons__units_unselected
-            }
-            onClick={() => setGases("no2")}
-          >
-            no₂
-          </span>
-          <span
-            className={
-              gases === "so2"
-                ? style.gases__buttons__units_selected
-                : style.gases__buttons__units_unselected
-            }
-            onClick={() => setGases("so2")}
-          >
-            so₂
-          </span>
-          <span
-            className={
-              gases === "o3"
-                ? style.gases__buttons__units_selected
-                : style.gases__buttons__units_unselected
-            }
-            onClick={() => setGases("o3")}
-          >
-            o₃
-          </span>
+          <p>Select a gas:</p>
+          <div>
+            <span
+              className={
+                gases === "co"
+                  ? style.gases__buttons__units_selected
+                  : style.gases__buttons__units_unselected
+              }
+              onClick={() => setGases("co")}
+            >
+              co
+            </span>
+            <span
+              className={
+                gases === "no2"
+                  ? style.gases__buttons__units_selected
+                  : style.gases__buttons__units_unselected
+              }
+              onClick={() => setGases("no2")}
+            >
+              no₂
+            </span>
+            <span
+              className={
+                gases === "so2"
+                  ? style.gases__buttons__units_selected
+                  : style.gases__buttons__units_unselected
+              }
+              onClick={() => setGases("so2")}
+            >
+              so₂
+            </span>
+            <span
+              className={
+                gases === "o3"
+                  ? style.gases__buttons__units_selected
+                  : style.gases__buttons__units_unselected
+              }
+              onClick={() => setGases("o3")}
+            >
+              o₃
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className={style.gases__content}>
+        <div className={style.gases__resume}>
+          <div className={style.gases__resume__graph}>
+            <DonutChart
+              data={groupValues}
+              title="Health status overall"
+              color={groupValues.map((group) => group.color)}
+              titleColor={
+                theme
+                  ? colors.lighterTextDarkColor
+                  : colors.darkerTextLightColor
+              }
+              tooltipBackground={colors.darkerMapBackground}
+            />
+          </div>
+          <div className={style.gases__resume_description}>
+            {groupValues
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .map((group, key) => {
+                const results = pollutants
+                  .find((pollutant) => pollutant.id === gases)!
+                  .levels.find((level) => level.healthStatus === group.name)!;
+
+                return (
+                  <div key={key}>
+                    <p
+                      style={{
+                        color:
+                          donutColors[group.name as keyof typeof donutColors],
+                      }}
+                    >
+                      <i className={healthIcons[results.healthStatus]} />{" "}
+                      {group.name}:
+                    </p>
+                    <ul>
+                      <li>
+                        <b>Symptoms</b>: {results.symptoms.toLowerCase()};
+                      </li>
+                      <li>
+                        <b>Diseases</b>: {results.diseases.toLowerCase()}.
+                      </li>
+                    </ul>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+        <div className={style.gases__cards}>
+          <div>
+            <p>us epa index</p>
+            <p>
+              {(
+                data
+                  .filter((e) =>
+                    hour === undefined
+                      ? e
+                      : e.last_updated.split(" ")[1] === hour.toString(),
+                  )
+                  .reduce((acc, curr) => acc + curr.us_epa_index, 0) /
+                data.filter((e) =>
+                  hour === undefined
+                    ? e
+                    : e.last_updated.split(" ")[1] === hour.toString(),
+                ).length
+              ).toFixed(2)}
+            </p>
+          </div>
+          <div>
+            <p>average</p>
+            <p>
+              {(
+                data
+                  .filter((e) =>
+                    hour === undefined
+                      ? e
+                      : e.last_updated.split(" ")[1] === hour.toString(),
+                  )
+                  .map((e) => e[gases])
+                  .reduce((acc, curr) => acc + curr, 0) /
+                data.filter((e) =>
+                  hour === undefined
+                    ? e
+                    : e.last_updated.split(" ")[1] === hour.toString(),
+                ).length
+              ).toFixed(2)}
+            </p>
+          </div>
+          <div>
+            <p>lower</p>
+            <p>
+              {data
+                .filter((e) =>
+                  hour === undefined
+                    ? e
+                    : e.last_updated.split(" ")[1] === hour.toString(),
+                )
+                .sort((a, b) => a[gases] - b[gases])[0]
+                [gases].toFixed(2)}
+            </p>
+          </div>
+          <div>
+            <p>bigger</p>
+            <p>
+              {data
+                .filter((e) =>
+                  hour === undefined
+                    ? e
+                    : e.last_updated.split(" ")[1] === hour.toString(),
+                )
+                .sort((a, b) => b[gases] - a[gases])[0]
+                [gases].toFixed(2)}
+            </p>
+          </div>
         </div>
       </div>
       <div className={style.gases__graph}>
@@ -129,7 +302,11 @@ export default function Gases({ theme, data }: gasesInterface) {
           gas={gases}
           labelText="Concentration (µg/m³)"
           tooltipUnit="(µg/m³)"
-          title={hour ? `${gases.toUpperCase()} concentration (${hour})` : `Average - ${gases.toUpperCase()} concentration`}
+          title={
+            hour
+              ? `${gases.toUpperCase()} concentration (${hour})`
+              : `Average - ${gases.toUpperCase()} concentration`
+          }
           lineColor={
             theme ? colors.lighterSecondaryColor : colors.darkerSecondaryColor
           }

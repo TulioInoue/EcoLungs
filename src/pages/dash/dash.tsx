@@ -1,4 +1,4 @@
-import style from "./Dash.module.css";
+import style from "./dash.module.css";
 
 import { type searchInterface } from "./search/Search";
 
