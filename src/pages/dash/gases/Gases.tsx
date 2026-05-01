@@ -71,8 +71,9 @@ export default function Gases({ theme, data }: gasesInterface) {
       color: string;
     } = {
       ...group,
-      color: donutColors[group.name as keyof typeof donutColors],
+      color: "",
     };
+    newGroup.color = donutColors[group.name as keyof typeof donutColors];
     return newGroup;
   });
 
@@ -184,9 +185,11 @@ export default function Gases({ theme, data }: gasesInterface) {
         <div className={style.gases__resume}>
           <div className={style.gases__resume__graph}>
             <DonutChart
-              data={groupValues}
+              data={groupValues.sort((a, b) => a.color.localeCompare(b.color))}
               title="Health status overall"
-              color={groupValues.map((group) => group.color)}
+              color={groupValues
+                .sort((a, b) => a.color.localeCompare(b.color))
+                .map((group) => group.color)}
               titleColor={
                 theme
                   ? colors.lighterTextDarkColor
@@ -225,73 +228,6 @@ export default function Gases({ theme, data }: gasesInterface) {
                   </div>
                 );
               })}
-          </div>
-        </div>
-        <div className={style.gases__cards}>
-          <div>
-            <p>us epa index</p>
-            <p>
-              {(
-                data
-                  .filter((e) =>
-                    hour === undefined
-                      ? e
-                      : e.last_updated.split(" ")[1] === hour.toString(),
-                  )
-                  .reduce((acc, curr) => acc + curr.us_epa_index, 0) /
-                data.filter((e) =>
-                  hour === undefined
-                    ? e
-                    : e.last_updated.split(" ")[1] === hour.toString(),
-                ).length
-              ).toFixed(2)}
-            </p>
-          </div>
-          <div>
-            <p>average</p>
-            <p>
-              {(
-                data
-                  .filter((e) =>
-                    hour === undefined
-                      ? e
-                      : e.last_updated.split(" ")[1] === hour.toString(),
-                  )
-                  .map((e) => e[gases])
-                  .reduce((acc, curr) => acc + curr, 0) /
-                data.filter((e) =>
-                  hour === undefined
-                    ? e
-                    : e.last_updated.split(" ")[1] === hour.toString(),
-                ).length
-              ).toFixed(2)}
-            </p>
-          </div>
-          <div>
-            <p>lower</p>
-            <p>
-              {data
-                .filter((e) =>
-                  hour === undefined
-                    ? e
-                    : e.last_updated.split(" ")[1] === hour.toString(),
-                )
-                .sort((a, b) => a[gases] - b[gases])[0]
-                [gases].toFixed(2)}
-            </p>
-          </div>
-          <div>
-            <p>bigger</p>
-            <p>
-              {data
-                .filter((e) =>
-                  hour === undefined
-                    ? e
-                    : e.last_updated.split(" ")[1] === hour.toString(),
-                )
-                .sort((a, b) => b[gases] - a[gases])[0]
-                [gases].toFixed(2)}
-            </p>
           </div>
         </div>
       </div>

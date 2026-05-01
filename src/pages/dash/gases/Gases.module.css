@@ -154,11 +154,12 @@
 .gases__resume {
   width: 100%;
   display: grid;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
   padding: clamp(0.5rem, 2vw, 1rem);
-  min-height: 400px;
+  min-height: 300px;
   border-radius: 10px;
-  position: relative;
 }
 
 .gases__light .gases__resume {
@@ -171,8 +172,16 @@
   box-shadow: 0px 0px 10px black;
 }
 
+.gases__content {
+  width: 100%;
+}
+
 .gases__resume__graph {
-  min-height: 200px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .gases__resume_description {
@@ -207,93 +216,30 @@
   padding: 0.5rem 1rem;
 }
 
-.gases__content {
-  display: grid;
-  gap: 1rem;
-}
-
-.gases__cards {
-  display: grid;
-  align-items: center;
-  padding: clamp(1rem, 2vw, 3rem);
-  gap: 1rem;
-  grid-column: 2;
-}
-
-.gases__cards div {
-  height: 100%;
-  width: 100%;
-  color: var(--lighter-text-light-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 1rem;
-  line-height: normal;
-  gap: 5px;
-  padding: .5rem;
-}
-
-.gases__cards div p:first-child {
-  font-weight: 700;
-  font-size: clamp(0.75rem, 2vw, 1rem);
-}
-
-.gases__cards div p:last-child {
-  font-weight: 500;
-  font-size: clamp(0.5rem, 2vw, 0.75rem);
-}
-
-.gases__light .gases__cards div {
-  background-color: var(--lighter-primary-color);
-}
-
-.gases__dark .gases__cards div {
-  background-color: var(--darker-primary-color);
-}
-
 @media (min-width: 700px) {
   .gases__resume {
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 2fr 3fr;
   }
   .gases__buttons__units {
     flex-direction: column;
   }
-
-  .gases__cards {
-    grid-template-columns: 1fr 1fr;
-    
-    grid-column: 1;
-  }
 }
 
 @media (max-width: 700px) {
+  .gases__resume__graph {
+    height: 200px;
+  }
+  .gases__resume_description p,
+  .gases__resume_description ul {
+    line-height: normal;
+    font-size: 0.75rem;
+  }
   .gases__buttons__units,
   .gases__buttons_hour {
     flex-direction: column;
     line-height: normal;
   }
-
   .gases__buttons_hour span {
     width: 100%;
   }
-
-  .gases__cards {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-row: 0;
-  }
 }
-
-@media (min-width: 900px) {
-  .gases__content {
-    grid-template-columns: 2fr 1fr;
-  }
-}
-
-@media (max-width: 900px) {
-  .gases__content {
-    grid-template-columns: 1fr;
-  }
-}
-
-

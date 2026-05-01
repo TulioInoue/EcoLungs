@@ -41,7 +41,6 @@ export default function Search({
           >
             <div className={style.search__modal_header}>
               <h3>Choose a city</h3>
-              <i onClick={() => setModal(false  )} className="fi fi-ss-circle-xmark"></i>
             </div>
             <div className={style.search__modal_city}>
               {cities
